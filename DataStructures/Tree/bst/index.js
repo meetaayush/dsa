@@ -48,7 +48,68 @@ module.exports = class BST {
         return null;
     }
 
-    remove(value) {
-        // Todo: by jaan
+    remove(value, root = this.root) {
+        // Base case
+        if (root === null) {
+            return null;
+        }
+        let currentNode = root, parentNode = null;
+        while (currentNode !== null) {
+            if (value < currentNode.value) {
+                // Move to the left
+                parentNode = currentNode;
+                currentNode = currentNode.left;
+            } else if (value > currentNode.value) {
+                // Move to the right
+                parentNode = currentNode;
+                currentNode = currentNode.right;
+            } else {
+                // Match found
+                if (currentNode.left === null && currentNode.right === null) {
+                    // Leaf node
+                    if (parentNode === null) {
+                        return null;
+                    }
+                    if (parentNode.left === currentNode) {
+                        parentNode.left = null;
+                    } else {
+                        parentNode.right = null;
+                    }
+                    return root;
+                } else if (currentNode.left === null && currentNode.right !== null) {
+                    // node with only right child
+                    if (parentNode === null) {
+                        return null;
+                    }
+                    if (parentNode.left === currentNode) {
+                        parentNode.left = currentNode.right;
+                    } else {
+                        parentNode.right = currentNode.right;
+                    }
+                    currentNode.right = null;
+                    return root;
+                } else if (currentNode.right === null && currentNode.left !== null) {
+                    // node with only left child
+                    if (parentNode.left === currentNode) {
+                        parentNode.left = currentNode.left;
+                    } else {
+                        parentNode.right = currentNode.left;
+                    }
+                    currentNode.left = null;
+                    return root;
+                } else {
+                    // Node with both child
+                    // Find successor i.e. Smallest element in the right subtree
+                    let tempNode = currentNode.right;
+                    while (tempNode.left !== null) {
+                        tempNode = tempNode.left;
+                    }
+                    currentNode.value = tempNode.value;
+                    // Delete the value from right subtree
+                    currentNode.right = this.remove(tempNode.value, currentNode.right);
+                    return root;
+                }
+            }
+        }
     }
 }
