@@ -12,7 +12,7 @@ LinkedList.prototype.search = function (value) {
         currentElement = currentElement.next;
     }
     return false;
-}
+};
 
 const myList = new LinkedList();
 
@@ -23,4 +23,8 @@ myList.push(7);
 myList.push(9);
 myList.push(1);
 
-console.log(myList.search(2))
+// uncomment below line to test the code
+// console.log(myList.search(2));
+
+// To be used in other files so that we don't have to write this function again
+module.exports = LinkedList;

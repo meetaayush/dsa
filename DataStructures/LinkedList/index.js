@@ -4,7 +4,7 @@ module.exports = class LinkedList {
     constructor() {
         this.head = null;
         this.tail = null;
-        this.length = 0
+        this.length = 0;
     }
 
     isEmpty() {
@@ -87,4 +87,14 @@ module.exports = class LinkedList {
         this.head = newHead;
         return this;
     }
-}
+
+    printList() {
+        const list = [];
+        let currentElement = this.head;
+        while (currentElement !== null) {
+            list.push(currentElement.value);
+            currentElement = currentElement.next;
+        }
+        return list;
+    }
+};
