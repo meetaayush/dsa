@@ -112,4 +112,33 @@ module.exports = class BST {
             }
         }
     }
+
+    preOrder(currentNode) {
+        // root -> left -> right
+        if (currentNode !== null) {
+            console.log(currentNode.value);
+
+            this.preOrder(currentNode.left);
+
+            this.preOrder(currentNode.right);
+        }
+    }
+
+    inOrder(currentNode) {
+        // left -> root -> right
+        if (currentNode !== null) {
+            this.inOrder(currentNode.left);
+            console.log(currentNode.value);
+            this.inOrder(currentNode.right);
+        }
+    }
+
+    postOrder(currentNode) {
+        // left -> right -> root
+        if (currentNode !== null) {
+            this.inOrder(currentNode.left);
+            this.inOrder(currentNode.right);
+            console.log(currentNode.value);
+        }
+    }
 }
