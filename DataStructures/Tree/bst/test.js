@@ -12,4 +12,6 @@ myTree.insert(12);
 myTree.remove(15); // remove node with two children
 myTree.remove(10); // remove the root node
 myTree.remove(3); // remove leaf node
-console.log(myTree);
+const arr = [];
+myTree.inOrderTraverse(myTree.root,arr)
+console.log(arr);

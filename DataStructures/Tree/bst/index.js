@@ -112,4 +112,13 @@ module.exports = class BST {
             }
         }
     }
+
+    inOrderTraverse(rootNode, arr) {
+        if (!rootNode) {
+            return null;
+        }
+        this.inOrderTraverse(rootNode.left, arr);
+        arr.push(rootNode.value);
+        this.inOrderTraverse(rootNode.right, arr);
+    }
 }
